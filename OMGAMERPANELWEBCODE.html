@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>APK Download - OM GAMER PANEL</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root {
+      --bg-light: #e0f7fa;
+      --bg-dark: #0d0d0d;
+      --text-light: #ffffff;
+      --text-dark: #000000;
+      --primary: #00b894;
+      --neon-green: #00f7ff;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background-color: var(--bg-light);
+      color: var(--text-dark);
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    body.dark-mode {
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+    }
+
+    header {
+      background-color: var(--primary);
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+    }
+
+    .left-controls, .right-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo {
+      font-size: 1.6rem;
+      font-weight: bold;
+    }
+
+    .toggle, .menu-btn {
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    main {
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .download-btn {
+      padding: 1rem 2rem;
+      font-size: 1.2rem;
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 2rem;
+    }
+
+    .features {
+      margin-top: 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .feature-box {
+      padding: 1rem;
+      border-radius: 10px;
+      background-color: rgba(0, 0, 0, 0.05);
+      transition: background-color 0.3s;
+    }
+
+    body.dark-mode .feature-box {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .social-links {
+      margin-top: 3rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .social-links h2 {
+      width: 100%;
+      margin-bottom: 2rem;
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: var(--neon-green);
+    }
+
+    .social-links a {
+      font-size: 2.2rem;
+      color: var(--neon-green);
+      text-decoration: none;
+      transition: transform 0.2s;
+    }
+
+    .social-links a:hover {
+      transform: scale(1.2);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      background: #222;
+      color: #fff;
+    }
+
+    /* Side Menu */
+    .side-menu {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      width: 250px;
+      height: 100%;
+      background-color: #111;
+      color: white;
+      padding-top: 60px;
+      transition: left 0.3s ease;
+      z-index: 1000;
+    }
+
+    .side-menu a {
+      display: flex;
+      align-items: center;
+      padding: 15px 20px;
+      color: white;
+      text-decoration: none;
+      font-size: 1.1rem;
+    }
+
+    .side-menu a i {
+      margin-right: 10px;
+      font-size: 1rem;
+    }
+
+    .side-menu a:hover {
+      background-color: #333;
+    }
+
+    .side-menu.active {
+      left: 0;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+      display: none;
+      z-index: 999;
+    }
+
+    .overlay.active {
+      display: block;
+    }
+
+    .side-toggle {
+      display: flex;
+      align-items: center;
+      padding: 15px 20px;
+      color: white;
+      font-size: 1.1rem;
+      cursor: pointer;
+    }
+
+    .side-toggle:hover {
+      background-color: #333;
+    }
+
+    .side-toggle i {
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay" onclick="toggleMenu()"></div>
+
+  <!-- Side Menu -->
+  <div class="side-menu" id="sideMenu">
+    <a href="#"><i class="fas fa-home"></i> Home</a>
+    <a href="#"><i class="fas fa-download"></i> Downloads</a>
+    <a href="#"><i class="fas fa-gamepad"></i> Games</a>
+    <a href="#"><i class="fas fa-info-circle"></i> About</a>
+    <a href="#"><i class="fas fa-envelope"></i> Contact</a>
+    <div class="side-toggle" onclick="toggleDarkMode()">
+      <i class="fas fa-adjust"></i> Toggle Mode
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="left-controls">
+      <span class="menu-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i></span>
+      <div class="logo">OM GAMER PANEL</div>
+    </div>
+    <div class="right-controls">
+      <span class="toggle" onclick="toggleDarkMode()"><i class="fas fa-moon"></i></span>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main>
+    <h1>Download the Latest APK</h1>
+    <p>Get access to the best gaming features and tools with just one click.</p>
+
+    <button class="download-btn" onclick="window.location.href='https://upload.app/download/axiz-r-panel-v16/com.axizr.shadowfaceda3b74042e211373d4f4335c6a2188149c9a67811002d32f175fc3f20226a321'">
+      Download Now
+    </button>
+
+    <section class="features">
+      <div class="feature-box">
+        <h3>🚀 Fast Performance</h3>
+        <p>Optimized for speed and smooth usage.</p>
+      </div>
+      <div class="feature-box">
+        <h3>🎮 Game Tools</h3>
+        <p>Get in-game advantages and tools for gamers.</p>
+      </div>
+      <div class="feature-box">
+        <h3>🔐 Secure</h3>
+        <p>Privacy protected & virus free.</p>
+      </div>
+    </section>
+
+    <div class="social-links">
+      <h2>Connect with Us</h2>
+      <a href="https://wa.me/message/KTBNLH767D4IA1" target="_blank"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://t.me/OMGAMERHACKS" target="_blank"><i class="fab fa-telegram"></i></a>
+      <a href="https://www.instagram.com/fxi_om_rana?igsh=MTdua21ycDRoazR1dw==" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://youtube.com/@omgamerhacks-g2l?si=ka0e2TVp0CKo_h5H" target="_blank"><i class="fab fa-youtube"></i></a>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2025 OM GAMER PANEL. All rights reserved.
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+    }
+
+    function toggleMenu() {
+      const menu = document.getElementById('sideMenu');
+      const overlay = document.querySelector('.overlay');
+      menu.classList.toggle('active');
+      overlay.classList.toggle('active');
+    }
+
+    window.onload = () => {
+      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark-mode');
+      }
+    };
+  </script>
+</body>
+</html>
